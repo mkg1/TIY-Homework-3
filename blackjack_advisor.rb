@@ -3,22 +3,20 @@ def total (card1, card2)
 end
 
 # def hand_type(card1, card2)
-#   if card1
+#   if card1 == card2
+#     return
+#   elsif card1 == 11 || card2 == 11
+#     which_hash = soft
 # end
-#Also try....method for total
+
 #method for hard/soft/pair
 
-# hard_hash = {}
-# soft_hash = {}
-# pair_hash = {}
+# hard_hash = {}# soft_hash = {}# pair_hash = {}
 sub_hash_h = Hash.new("Hit")
 sub_hash_dh = Hash.new("Double if possible, otherwise hit")
 sub_hash_s = Hash.new("Stand")
 sub_hash_p = Hash.new("Split")
-#do an each thing
-# (2..6).each do |n|
-#   hash[n] = "stand"
-# end
+#do an each thing# (2..6).each do |n| #   hash[n] = "stand" # end
 hard_hash = { 5 => sub_hash_h,
               6 => sub_hash_h,
               7 => sub_hash_h,
@@ -74,6 +72,8 @@ if player_card_2 == "A" || player_card_2 == "a"
    player_card_2 == 11
 end
 
+#if player_card_1 == player_card_2
+
 cards_value = total(player_card_1, player_card_2)
 puts "Player card value is #{cards_value}"
 
@@ -82,6 +82,19 @@ dealer_card = gets.chomp.to_i
 if dealer_card == "A" || dealer_card == "a"
    dealer_card == 11
 end
+
+if player_card_1 == player_card_2
+  ideal_move = pair_hash
+elsif player_card_1 == 11 || player_card_2 == 11
+  ideal_move = soft_hash
+else
+  ideal_move = hard_hash
+end
+puts "Your ideal move is: #{ideal_move[cards_value][dealer_card]}"
+
+
+
+
 
 #puts hard_hash[player_value][dealer_card]
 
