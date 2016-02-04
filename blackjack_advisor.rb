@@ -28,11 +28,15 @@ end
 
 
 sub_hash_h = Hash.new("Hit")
+simplified_h = Hash.new("Hit")
+(2..6).each do |x|
+  simplified_h[x] = "Stand"
+end
 #sub_hash_hb = {5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}
 sub_hash_dh = Hash.new("Double if possible, otherwise hit")
 sub_hash_s = Hash.new("Stand")
 sub_hash_p = Hash.new("Split")
-#do an each thing# (2..6).each do |n| #   hash[n] = "stand" # end
+
 hard_hash = { 5 => sub_hash_h,
               6 => sub_hash_h,
               7 => sub_hash_h,
@@ -41,10 +45,10 @@ hard_hash = { 5 => sub_hash_h,
               10 => sub_hash_dh.merge({10 => "Hit", 11 => "Hit"}),
               11 => sub_hash_dh,
               12 => sub_hash_h.merge({4 => "Stand", 5 => "Stand", 6 => "Stand"}),
-              13 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
-              14 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
-              15 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
-              16 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
+              13 => simplified_h,
+              14 => simplified_h,
+              15 => simplified_h,
+              16 => simplified_h,
               17 => sub_hash_s,
               18 => sub_hash_s,
               19 => sub_hash_s,
