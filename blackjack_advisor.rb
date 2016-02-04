@@ -1,7 +1,18 @@
-def total (card1, card2)
-  return card1.to_i + card2.to_i
+def total(card1, card2)
+  card1.to_i + card2.to_i
+end
+#
+def aces_to_eleven(card)
+  if card == "A" || card == "a"
+     return true
+  end
 end
 
+def face_cards(card)
+  if card == "J" || card == "j" || card == "Q" || card == "q" || card == "K" || card == "k"
+     card = 10
+  end
+end
 # def hand_type(card1, card2)
 #   if card1 == card2
 #     return
@@ -9,96 +20,86 @@ end
 #     which_hash = soft
 # end
 
-#method for hard/soft/pair
 
-# hard_hash = {}# soft_hash = {}# pair_hash = {}
-sub_hash_h = Hash.new("Hit")
-sub_hash_dh = Hash.new("Double if possible, otherwise hit")
-sub_hash_s = Hash.new("Stand")
-sub_hash_p = Hash.new("Split")
-#do an each thing# (2..6).each do |n| #   hash[n] = "stand" # end
-hard_hash = { 5 => sub_hash_h,
-              6 => sub_hash_h,
-              7 => sub_hash_h,
-              8 => sub_hash_h.merge({5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
-              9 => sub_hash_h.merge({2 => "Double if possible, otherwise hit", 3 => "Double if possible, otherwise hit", 4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
-              10 => sub_hash_dh.merge({10 => "Hit", 11 => "Hit"}),
-              11 => sub_hash_dh,
-              12 => sub_hash_h.merge({4 => "Stand", 5 => "Stand", 6 => "Stand"}),
-              13 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
-              14 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
-              15 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
-              16 => sub_hash_s,
-              17 => sub_hash_s,
-              18 => sub_hash_s,
-              19 => sub_hash_s,
-              20 => sub_hash_s,
-              21 => sub_hash_s
-}
-
-soft_hash = { 13 => sub_hash_h.merge({4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
-              14 => sub_hash_h.merge({4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
-              15 => sub_hash_h.merge({4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
-              16 => sub_hash_h.merge({4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
-              17 => sub_hash_h.merge({2 => "Double if possible, otherwise hit", 3 => "Double if possible, otherwise hit", 4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
-              18 => sub_hash_s.merge({3 => "Double if possible, otherwise stand", 4 => "Double if possible, otherwise stand", 5 => "Double if possible, otherwise stand", 6 => "Double if possible, otherwise stand", 9 => "Hit", 10 => "Hit"}),
-              19 => sub_hash_s.merge({6 => "Double if possible, otherwise stand"}),
-              20 => sub_hash_s,
-              21 => sub_hash_s
-}
-
-pair_hash = {  4 => sub_hash_p.merge({8 => "Hit", 9 => "Hit", 10 => "Hit", 11 => "Hit"}),
-               6 => sub_hash_p.merge({9 => "Hit", 10 => "Hit", 11 => "Hit"}),
-               8 => sub_hash_h.merge({4 => "Split", 5 => "Split", 6 => "Split"}),
-              10 => sub_hash_dh.merge({10 => "Hit", 11 => "Hit"}),
-              12 => sub_hash_p.merge({8 => "Hit", 9 => "Hit", 10 => "Hit", 11 => "Hit"}),
-              14 => sub_hash_p.merge({9 => "Hit", 10 => "Split", 11 => "Hit"}),
-              16 => sub_hash_p,
-              18 => sub_hash_p.merge({7 => "Split", 10 => "Split", 11 => "Split"}),
-              20 => sub_hash_s,
-              22 => sub_hash_p
-
-}
+# sub_hash_h = Hash.new("Hit")
+# sub_hash_dh = Hash.new("Double if possible, otherwise hit")
+# sub_hash_s = Hash.new("Stand")
+# sub_hash_p = Hash.new("Split")
+# #do an each thing# (2..6).each do |n| #   hash[n] = "stand" # end
+# hard_hash = { 5 => sub_hash_h,
+#               6 => sub_hash_h,
+#               7 => sub_hash_h,
+#               8 => sub_hash_h.merge({5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
+#               9 => sub_hash_h.merge({2 => "Double if possible, otherwise hit", 3 => "Double if possible, otherwise hit", 4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
+#               10 => sub_hash_dh.merge({10 => "Hit", 11 => "Hit"}),
+#               11 => sub_hash_dh,
+#               12 => sub_hash_h.merge({4 => "Stand", 5 => "Stand", 6 => "Stand"}),
+#               13 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
+#               14 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
+#               15 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
+#               16 => sub_hash_s,
+#               17 => sub_hash_s,
+#               18 => sub_hash_s,
+#               19 => sub_hash_s,
+#               20 => sub_hash_s,
+#               21 => sub_hash_s
+# }
+#
+# soft_hash = { 13 => sub_hash_h.merge({4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
+#               14 => sub_hash_h.merge({4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
+#               15 => sub_hash_h.merge({4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
+#               16 => sub_hash_h.merge({4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
+#               17 => sub_hash_h.merge({2 => "Double if possible, otherwise hit", 3 => "Double if possible, otherwise hit", 4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
+#               18 => sub_hash_s.merge({3 => "Double if possible, otherwise stand", 4 => "Double if possible, otherwise stand", 5 => "Double if possible, otherwise stand", 6 => "Double if possible, otherwise stand", 9 => "Hit", 10 => "Hit"}),
+#               19 => sub_hash_s.merge({6 => "Double if possible, otherwise stand"}),
+#               20 => sub_hash_s,
+#               21 => sub_hash_s
+# }
+#
+# pair_hash = {  4 => sub_hash_p.merge({8 => "Hit", 9 => "Hit", 10 => "Hit", 11 => "Hit"}),
+#                6 => sub_hash_p.merge({9 => "Hit", 10 => "Hit", 11 => "Hit"}),
+#                8 => sub_hash_h.merge({4 => "Split", 5 => "Split", 6 => "Split"}),
+#               10 => sub_hash_dh.merge({10 => "Hit", 11 => "Hit"}),
+#               12 => sub_hash_p.merge({8 => "Hit", 9 => "Hit", 10 => "Hit", 11 => "Hit"}),
+#               14 => sub_hash_p.merge({9 => "Hit", 10 => "Split", 11 => "Hit"}),
+#               16 => sub_hash_p,
+#               18 => sub_hash_p.merge({7 => "Split", 10 => "Split", 11 => "Split"}),
+#               20 => sub_hash_s,
+#               22 => sub_hash_p
+#
+# }
 
 puts "What is your first card?"
 player_card_1 = gets.chomp
-if player_card_1 == "A" || player_card_1 == "a"
-   player_card_1 == 11
-end
+player_card_1 = 11 if aces_to_eleven(player_card_1)
+#player_card_1 = aces_to_eleven(player_card_1)
+#player_card_1 = face_cards(player_card_1)
+
+puts "card 1 is #{player_card_1}"
 
 puts "What is your second card?"
 player_card_2 = gets.chomp
-if player_card_2 == "A" || player_card_2 == "a"
-   player_card_2 == 11
-end
+player_card_2 = 11 if aces_to_eleven(player_card_2)
 
-#if player_card_1 == player_card_2
-
-cards_value = total(player_card_1, player_card_2)
-puts "Player card value is #{cards_value}"
+player_total = total(player_card_1, player_card_2)
+puts "Player card value is #{player_total}"
 
 puts "What is the dealer's card?"
-dealer_card = gets.chomp.to_i
-if dealer_card == "A" || dealer_card == "a"
-   dealer_card == 11
-end
+dealer_card = gets.chomp
+dealer_card = 11 if aces_to_eleven(dealer_card)
 
+# Pick Solution Yay!
 if player_card_1 == player_card_2
-  ideal_move = pair_hash
+  ideal_move = pair_hash[cards_value][dealer_card]
 elsif player_card_1 == 11 || player_card_2 == 11
-  ideal_move = soft_hash
+  ideal_move = soft_hash[cards_value][dealer_card]
 else
-  ideal_move = hard_hash
+  ideal_move = hard_hash[cards_value][dealer_card]
 end
-puts "Your ideal move is: #{ideal_move[cards_value][dealer_card]}"
+puts "Your ideal move is: #{ideal_move}"
 
 
 
-
-
-#puts hard_hash[player_value][dealer_card]
-
-#puts "Your ideal move is: #{hard_hash[player_value][dealer_card]}" #output move
 
 
 
