@@ -28,6 +28,7 @@ end
 
 
 sub_hash_h = Hash.new("Hit")
+#sub_hash_hb = {5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}
 sub_hash_dh = Hash.new("Double if possible, otherwise hit")
 sub_hash_s = Hash.new("Stand")
 sub_hash_p = Hash.new("Split")
@@ -35,7 +36,7 @@ sub_hash_p = Hash.new("Split")
 hard_hash = { 5 => sub_hash_h,
               6 => sub_hash_h,
               7 => sub_hash_h,
-              8 => sub_hash_h.merge({5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
+              8 => sub_hash_h.merge!({5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
               9 => sub_hash_h.merge({2 => "Double if possible, otherwise hit", 3 => "Double if possible, otherwise hit", 4 => "Double if possible, otherwise hit", 5 => "Double if possible, otherwise hit", 6 => "Double if possible, otherwise hit"}),
               10 => sub_hash_dh.merge({10 => "Hit", 11 => "Hit"}),
               11 => sub_hash_dh,
@@ -43,7 +44,7 @@ hard_hash = { 5 => sub_hash_h,
               13 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
               14 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
               15 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
-              16 => sub_hash_s,
+              16 => sub_hash_h.merge({2 => "Stand", 3 => "Stand", 4 => "Stand", 5 => "Stand", 6 => "Stand"}),
               17 => sub_hash_s,
               18 => sub_hash_s,
               19 => sub_hash_s,
@@ -92,15 +93,15 @@ dealer_card = gets.chomp
 dealer_card = 11 if aces_to_eleven(dealer_card)
 dealer_card = 10 if face_cards(dealer_card)
 
-
 if player_card_1 == player_card_2
-  ideal_move = pair_hash[player_total][dealer_card]
+  puts "Ok, you have a pair...let's see..."
+  ideal_move = pair_hash[player_total][dealer_card.to_i]
 elsif player_card_1 == 11 || player_card_2 == 11
-  ideal_move = soft_hash[player_total][dealer_card]
+  puts "Ok, you have one ace...let's see..."
+  ideal_move = soft_hash[player_total][dealer_card.to_i]
 else
-  ideal_move = hard_hash[player_total][dealer_card]
+  ideal_move = hard_hash[player_total][dealer_card.to_i]
 end
-ideal_move =
 puts "Your ideal move is: #{ideal_move}"
 
 
